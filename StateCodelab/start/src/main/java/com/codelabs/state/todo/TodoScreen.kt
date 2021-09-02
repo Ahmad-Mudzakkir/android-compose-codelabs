@@ -50,6 +50,7 @@ fun TodoScreen(
     onAddItem: (TodoItem) -> Unit,
     onRemoveItem: (TodoItem) -> Unit
 ) {
+
     Column {
         LazyColumn(
             modifier = Modifier.weight(1f),
@@ -103,7 +104,7 @@ private fun randomTint(): Float {
     return Random.nextFloat().coerceIn(0.3f, 0.9f)
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewTodoScreen() {
     val items = listOf(
