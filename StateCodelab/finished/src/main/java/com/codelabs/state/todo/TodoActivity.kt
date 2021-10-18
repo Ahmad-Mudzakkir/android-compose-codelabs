@@ -22,10 +22,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
 import com.codelabs.state.ui.StateCodelabTheme
 
 class TodoActivity : AppCompatActivity() {
-
     val todoViewModel by viewModels<TodoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +41,19 @@ class TodoActivity : AppCompatActivity() {
     }
 }
 
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewTodoScreen2(){
+//    TodoActivityScreen()
+//}
+
 @Composable
 private fun TodoActivityScreen(todoViewModel: TodoViewModel) {
     TodoScreen(
         items = todoViewModel.todoItems,
         currentlyEditing = todoViewModel.currentEditItem,
-        onAddItem = todoViewModel::addItem,
-        onRemoveItem = todoViewModel::removeItem,
+        onAddItem = { todoViewModel.addItem(it) },
+        onRemoveItem = { todoViewModel.removeItem(it) },
         onStartEdit = todoViewModel::onEditItemSelected,
         onEditItemChange = todoViewModel::onEditItemChange,
         onEditDone = todoViewModel::onEditDone

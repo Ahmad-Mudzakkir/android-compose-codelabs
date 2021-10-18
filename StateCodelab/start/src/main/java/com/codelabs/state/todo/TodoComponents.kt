@@ -27,15 +27,7 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -57,6 +49,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -246,6 +239,30 @@ fun TodoEditButton(
         modifier = modifier
     ) {
         Text(text)
+    }
+}
+
+@Composable
+fun TodoEditButtonInline(
+    onEditDone: () -> Unit,
+    onRemoveItem: () -> Unit
+) {
+    Row {
+        val shrinkButtons = Modifier.widthIn(20.dp)
+        TextButton(onClick = onEditDone, modifier = shrinkButtons) {
+            Text(
+                text = "\uD83D\uDCBE", // floppy disk
+                textAlign = TextAlign.End,
+                modifier = Modifier.width(30.dp)
+            )
+        }
+        TextButton(onClick = onRemoveItem, modifier = shrinkButtons) {
+            Text(
+                text = "❌",
+                textAlign = TextAlign.End,
+                modifier = Modifier.width(30.dp)
+            )
+        }
     }
 }
 

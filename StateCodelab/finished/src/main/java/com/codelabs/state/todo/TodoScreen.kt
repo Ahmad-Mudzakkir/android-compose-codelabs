@@ -178,7 +178,10 @@ fun TodoItemInlineEditor(
  * @param buttonText text to display on the button
  */
 @Composable
-fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit, buttonText: String = "Add") {
+fun TodoItemEntryInput(
+    onItemComplete: (TodoItem) -> Unit,
+    buttonText: String = "Add")
+{
     val (text, onTextChange) = rememberSaveable { mutableStateOf("") }
     val (icon, onIconChange) = remember { mutableStateOf(TodoIcon.Default) }
 
